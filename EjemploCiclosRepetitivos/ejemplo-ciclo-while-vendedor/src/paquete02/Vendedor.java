@@ -5,6 +5,7 @@
  */
 package paquete02;
 
+
 public class Vendedor {
     private String nombres;
     private int edad;
