@@ -5,6 +5,8 @@
  */
 package paquete01;
 
+import paquete04.Colegio;
+
 /**
  *
  * @author reroes
@@ -15,11 +17,16 @@ public class LibretaCalificacion {
     private double promedio;
     private String promedioCualitativo;
     private double[] calificaciones;
-    // private Colegio c;
+    private Colegio colegio;
 
-    public LibretaCalificacion(String n, double[] c) {
+    public void establecerColegio(Colegio cole) {
+        colegio = cole;
+    }
+
+    public LibretaCalificacion(String n, double[] c,Colegio col) {
         estudiante = n;
         calificaciones = c;
+        colegio=col;
     }
 
     public void establecerEstudiante(String n) {
@@ -29,8 +36,8 @@ public class LibretaCalificacion {
     public void establecerPromedio() {
         double suma = 0;
 
-        // for (int i = 0; i < calificaciones.length; i++) {
-        for (int i = 0; i < obtenerCalificaciones().length; i++) {
+        for (int i = 0; i < calificaciones.length; i++) {
+            //for (int i = 0; i < obtenerCalificaciones().length; i++) {
             suma = suma + obtenerCalificaciones()[i];
         }
 
@@ -81,14 +88,18 @@ public class LibretaCalificacion {
         return calificaciones;
     }
 
+    public Colegio obtenerColegio() {
+        return colegio;
+    }
+
     @Override
     public String toString() {
         String cadena = "Libreta de Calificaciones\n";
-        cadena = String.format("%sNombre: %s\nCalificaciones:\n", cadena,
-                obtenerEstudiante());
+        cadena = String.format("%sColegio: %s\nCiudad: %s\nNombre: %s\nCalificaciones:\n", cadena,
+                colegio.obtenerNombre(),colegio.obtenerCiudad(), obtenerEstudiante());
         // cadena = String.format("%sNombre: %s\nCalificaciones:\n", cadena,
         //        estudiante);
-        
+
         for (int i = 0; i < obtenerCalificaciones().length; i++) {
             cadena = String.format("%s\t\t%.2f\n", cadena,
                     obtenerCalificaciones()[i]);
@@ -96,9 +107,9 @@ public class LibretaCalificacion {
         // cadena = String.format("%sPromedio calificaciones: %.2f\n"
         //         + "Promedio cuantitativo: %s\n",
         //        cadena, obtenerPromedio(), obtenerPromedioCualitativo());
-        
+
         cadena = String.format("%sPromedio calificaciones: %.2f\n"
-                 + "Promedio cuantitativo: %s\n",
+                + "Promedio cuantitativo: %s\n",
                 cadena, promedio, promedioCualitativo);
         return cadena;
     }
